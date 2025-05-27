@@ -6,9 +6,7 @@ app.get('/', (req,res) => {
     res.send();
 });
 
-app.get('/api/contacts', (req,res) => {
-    res.json({message: "Get all contacts"});
-});
+app.use("/api/contacts", require("./routes/contactRoutes"));
 
 
 app.listen(process.env.PORT, () =>{
