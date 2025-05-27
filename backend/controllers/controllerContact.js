@@ -17,6 +17,8 @@ const getContact = (req,res) => {
 //@access public
 //@route POST /api/contacts
 const createContact = (req,res) => {
+    console.log("The request body is", req.body)
+    const { name, email, phone } = req.body; // object destructuring 
     res.status(200).json({message: "Create contact"});
 };
 
