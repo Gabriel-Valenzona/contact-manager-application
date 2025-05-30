@@ -2,13 +2,15 @@
 // without needing try/catch in every handler. It catches errors in async functions
 // and passes them to Express's error handling middleware automatically.
 const asyncHandler = require('express-async-handler');
+// import model mongoose
+const Contact = require('../models/contactModel.js');
 
 //@desc Get all contacts
 //@access public
 //@route GET /api/contacts
-
 const getContacts = asyncHandler(async (req, res) => {
-    res.status(200).json({message: "Get all contacts"});
+    const contacts = await Contact.find();
+    res.status(200).json(contacts);
 });
 
 //@desc Get individual contact
@@ -27,7 +29,9 @@ const createContact = asyncHandler(async (req,res) => {
     if (!name || !email || !phone) {
         res.status(400);
         throw new Error("All fields are mandatory !");     
-    }   
+    }
+
+    const contacts = await Contact.create
     res.status(201).json({message: "Create contact"});
 });
 
